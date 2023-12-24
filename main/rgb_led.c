@@ -10,9 +10,7 @@ ledc_info_t ledc_ch[RGB_LED_CHANNEL_NUM];
 // handle for rgb_led_pwm_init
 bool g_pwm_init_handle = false;
 
-// just for log porposes
-static const char *TAG = "Color";
-
+// definition of rgb color integer array
 static int *color_array;
 
 /**
@@ -42,7 +40,6 @@ static void rgb_led_pwm_init(void)
   ledc_ch[2].timer_index = LEDC_TIMER_0;
 
   // Configure timer zero
-
   ledc_timer_config_t ledc_timer = {
       .duty_resolution = LEDC_TIMER_8_BIT,
       .freq_hz = 100,
@@ -72,12 +69,10 @@ static void rgb_led_pwm_init(void)
 /**
  * Sets the RGB color
  */
-
 static void rgb_led_set_color(uint8_t red, uint8_t green, uint8_t blue)
 {
 
   // Value should be 0 - 255 for 8 bit number
-
   ledc_set_duty(ledc_ch[0].mode, ledc_ch[0].channel, red);
   ledc_update_duty(ledc_ch[0].mode, ledc_ch[0].channel);
 
